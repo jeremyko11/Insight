@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # /insight - 热点洞察内容创作工具
 
 OpenClaw skill —— **构建可复制认知的生产系统**。
@@ -136,3 +137,7 @@ Created by [your name]
 ## 许可证
 
 MIT
+=======
+# Insight
+人性观察 + IP内容引擎
+>>>>>>> 23e3cbeafb2314266326ab7c84da27cd47f4a7a5
