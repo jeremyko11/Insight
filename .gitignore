@@ -1,0 +1,25 @@
+# OS files
+Thumbs.db
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.log
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Temp
+*.tmp
+*.temp
