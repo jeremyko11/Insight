@@ -1,55 +1,51 @@
-# 批量原子提炼 Prompt
+# 批量原子提炼Prompt
 
-复制以下内容直接给 Claude/Grok，把原文放在后面，批量提炼人性原子：
+请帮我把下面这段文字，提炼成insight人性原子库的原子条目。
 
----
+## 原子定义
 
-你是人性原子提炼专家。请把下面的内容提炼成 **insight-skill 风格的 JSON 原子**。
-
-## 提炼规则
-
-1. **每条原子一个 JSON 对象**，一次输出多个，放于 JSON 数组中
-2. **knowledge 必须是：** 反常识、一句话能戳人的洞见，不超过 50 字
-3. **topics 从这里选：** `婚姻,心理,社会心理,社会观察,人性暗黑,情感,热点,两性,原生家庭,职场,职场人性`
-4. **type 从这里选：**
-   - `principle`：公理级人性原则
-   - `anti-pattern`：反常识破局（戳破常见误区）
-   - `viral-insight`：病毒性洞见（适合做标题）
-   - `case`：具体案例总结
-5. **confidence 从这里选：** `high, medium, low`
-6. **只输出合法 JSON**，不要解释，不要多余文字，不要 markdown 格式
-
-## 输出格式示例
+原子就是**可独立复用的人性洞见乐高**，每条原子是一个独立的JSON对象，包含以下字段：
 
 ```json
-[
-  {
-    "id": "2026_anti_001",
-    "knowledge": "婚姻里最致命的不是出轨，而是'我以为他懂我'这句话",
-    "original_source": "原创观察",
-    "topics": ["婚姻", "人性暗黑"],
-    "type": "anti-pattern",
-    "confidence": "high"
-  },
-  {
-    "id": "2026_principle_001",
-    "knowledge": "感情里，先不爱的那个人往往最清白",
-    "original_source": "网络观察",
-    "topics": ["情感", "两性"],
-    "type": "viral-insight",
-    "confidence": "high"
-  }
-]
+{
+  "id": "编号",
+  "knowledge": "一句话反常识、能戳人的洞见",
+  "original_source": "原文出处",
+  "topics": ["婚姻", "心理", "职场"],
+  "type": "anti-pattern",
+  "confidence": "high"
+}
 ```
 
-## 需要提炼的原文：
+## 字段说明
 
-（把原文粘贴在这里）
+| 字段 | 说明 |
+|------|------|
+| id | 编号规则：`年份_类型缩写_序号`，例如 `2026_viral_001` |
+| knowledge | 一句话，清晰、戳人，不啰嗦 |
+| original_source | 原文出处，例如「某小红书爆款笔记」「《被讨厌的勇气》」 |
+| topics | 数组，适用话题：婚姻,心理,社会心理,社会观察,人性暗黑,情感,热点,两性,原生家庭,职场,职场人性 |
+| type | 分类：principle(公理级)/anti-pattern(破误区)/viral-insight(病毒性洞见)/case(案例) |
+| confidence | high/medium/low |
+
+## 输出要求
+
+- 每条原子占一行，合法JSON
+- 不要多余说明，直接输出JSON数组
+- 尽量多提炼，原文中每个独立洞见都提炼成一条
+- 保持knowledge简短，一句话说清楚
 
 ---
 
-## 使用说明
+## 原文开始：
 
-- 一次提炼 10 条左右比较稳定
-- 提炼完手动检查一下 `knowledge` 是否符合"一句话戳人"要求
-- 所有提炼好的原子汇总到 `atoms.jsonl`，一行一个 JSON
+（把你要提炼的原文贴在这里）
+
+---
+
+## 输出示例（参考格式）
+
+```json
+{"id": "2026_principle_001", "knowledge": "人性永远先自我保护，再谈爱与责任", "original_source": "insight公理", "topics": ["人性"], "type": "principle", "confidence": "high"}
+{"id": "2026_viral_001", "knowledge": "为什么越听话的员工走得越早？因为公司只喜欢用听话的，不喜欢给听话的涨工资", "original_source": "职场观察", "topics": ["职场"], "type": "viral-insight", "confidence": "high"}
+```
